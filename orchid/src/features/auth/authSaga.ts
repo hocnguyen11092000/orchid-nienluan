@@ -24,6 +24,7 @@ function* handleLogin(action: PayloadAction<LoginPayload>) {
     localStorage.setItem("currentUser", JSON.stringify(res.user));
 
     yield put(loginSuccess(res.user));
+
     if (res.user.role == "user") {
       yield put(push("/"));
     } else {
