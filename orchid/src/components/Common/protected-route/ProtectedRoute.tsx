@@ -6,12 +6,14 @@ interface Props {}
 
 const ProtectedRoute = (props: Props) => {
   const currentUser: any = localStorage.getItem("currentUser");
-
-  const { role } = JSON.parse(currentUser);
-
   const currentUserRedux: any = useAppSelector(
     (state) => state.auth.currentUser
   );
+  if (!currentUser) {
+    return <Login></Login>;
+  }
+  const { role } = JSON.parse(currentUser);
+
   return currentUserRedux?.role == "admin" || role == "admin" ? (
     <Outlet></Outlet>
   ) : (
