@@ -103,7 +103,7 @@ const CheckOut = (props: Props) => {
                             ((item.price * (100 - item.discount)) / 100) *
                             item.quantity
                           ).toFixed(3)}
-                          .đ
+                          đ
                         </p>
                       </div>
                     );

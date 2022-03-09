@@ -29,6 +29,7 @@ const head = [
 ];
 
 const ListOrder = (props: Props) => {
+  const [orderLoading, setOrderLoading] = useState<boolean>(false);
   const [socket, setSocket] = useState<any>();
 
   useEffect(() => {
@@ -48,10 +49,13 @@ const ListOrder = (props: Props) => {
 
   useEffect(() => {
     (async () => {
+      setOrderLoading(true);
       try {
         const data = await orderApi.getAll();
         setOrder(descData(data.orders));
+        setOrderLoading(false);
       } catch (error) {
+        setOrderLoading(false);
         console.log("Error: " + error);
       }
     })();
@@ -70,12 +74,15 @@ const ListOrder = (props: Props) => {
   const { onChangeStatus, loading, mg } = props;
   return (
     <div className={`order`} style={{ margin: `20px ${mg}` }}>
-      {loading && <LinearProgress />}
+      <div style={{ padding: "10px 0" }}>
+        {orderLoading && <LinearProgress />}
+      </div>
       <Table
         head={head}
         dataOrders={order}
         onChangeStatus={onChangeStatus}
         loadingStatus={loading}
+        orderLoading={orderLoading}
         onDeleteOrder={handleDeleteOrder}
       ></Table>
     </div>

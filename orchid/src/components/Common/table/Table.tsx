@@ -45,6 +45,7 @@ type Props = {
   onDeleteOrder?: (id: string) => void;
   loadingStatus?: boolean;
   loading?: boolean;
+  orderLoading?: boolean;
 };
 
 const Table = (props: Props) => {
@@ -68,6 +69,7 @@ const Table = (props: Props) => {
     onChangeStatus,
     onDeleteOrder,
     loadingStatus,
+    orderLoading,
   } = props;
 
   const dispatch = useAppDispatch();
@@ -199,6 +201,7 @@ const Table = (props: Props) => {
               <CloseIcon></CloseIcon>
             </div>
           </Popup>
+          <div style={{ width: "100%" }}>{loading && <LinearProgress />}</div>
           <table>
             <thead>
               <tr>
@@ -215,21 +218,8 @@ const Table = (props: Props) => {
                 })}
               </tr>
             </thead>
+
             <tbody>
-              {loading && (
-                <tr>
-                  <td
-                    colSpan={9}
-                    style={{
-                      background: "#fff",
-                      padding: 0,
-                      maxHeight: "30px",
-                    }}
-                  >
-                    <LinearProgress />
-                  </td>
-                </tr>
-              )}
               {data &&
                 data.map((item: Product, index: number) => {
                   return (
@@ -304,7 +294,7 @@ const Table = (props: Props) => {
                       >
                         <span className="table-edit">Sửa</span>
                       </td>
-                      {loading ? (
+                      {orderLoading ? (
                         <td>Đang xóa...</td>
                       ) : (
                         <td
@@ -389,7 +379,7 @@ const Table = (props: Props) => {
                           ((item.price * (100 - item.discount)) / 100) *
                           item.quantity
                         ).toFixed(3)}
-                        .000đ
+                        đ
                       </td>
                       <td onClick={() => handleRemoveCart(item._id)}>
                         <span className="table-delete">Xóa</span>
