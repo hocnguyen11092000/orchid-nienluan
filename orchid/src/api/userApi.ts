@@ -1,5 +1,5 @@
+import { ListParams, ListResponse, User } from "models";
 import { LoginPayload } from "./../features/auth/authSlice";
-import { Address, ListParams, ListResponse, User } from "models";
 import axiosClient from "./axiosClient";
 
 const userApi = {

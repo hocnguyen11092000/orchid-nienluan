@@ -3,10 +3,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
-const path = require("path");
 const cors = require("cors");
-
-// app.set("trust proxy", "http://localhost:3000");
 
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -37,12 +34,6 @@ app.use("/api/v1", blog);
 app.get("/", (req, res) => {
   res.send("helloword");
 });
-
-// app.use(express.static(path.join(__dirname, "../orchid/build")));
-
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "../orchid/build/index.html"));
-// });
 
 // Middleware for Errors
 app.use(errorMiddleware);

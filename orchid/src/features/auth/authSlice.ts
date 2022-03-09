@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ForgotValues } from "features/user/pages/fogot-password/FogotPassword";
+import { ForgotValues } from "features/admin/user/pages/fogot-password/FogotPassword";
 import { User } from "../../models/user";
 
 export interface LoginPayload {

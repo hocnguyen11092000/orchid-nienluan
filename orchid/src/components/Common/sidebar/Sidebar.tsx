@@ -1,11 +1,8 @@
-import React, { useRef } from "react";
-import "./sidebar.scss";
-import Cookies from "js-cookie";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
+import { useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
+import "./sidebar.scss";
 
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "app/hooks";
-import { logout } from "features/auth/authSlice";
 type Props = {};
 const Sidebar = (props: Props) => {
   const subRef = useRef<any>();
@@ -22,7 +19,7 @@ const Sidebar = (props: Props) => {
   return (
     <div className="sidebar">
       <div className="sidebar__logo">
-        <Link to="/">
+        <Link to="/admin">
           <img src="https://nguoinoitieng.tv/images/nnt/96/0/bbi0.jpg" alt="" />
         </Link>
       </div>
@@ -40,10 +37,10 @@ const Sidebar = (props: Props) => {
             </div>
             <div ref={subRef} className="sidebar__menu-item-product">
               <span className="sidebar__menu-item-product-sub-product">
-                <Link to="/productList">List Product</Link>
+                <Link to="/admin/productList">List Product</Link>
               </span>
               <span className="sidebar__menu-item-product-sub-product">
-                <Link to="/add-edit-product/add">Add Product</Link>
+                <Link to="/admin/add-edit-product/add">Add Product</Link>
               </span>
             </div>
           </li>
@@ -59,10 +56,10 @@ const Sidebar = (props: Props) => {
             </div>
             <div ref={addressRef} className="sidebar__menu-item-product">
               <span className="sidebar__menu-item-product-sub-product">
-                <Link to="/address">List Address</Link>
+                <Link to="/admin/address">List Address</Link>
               </span>
               <span className="sidebar__menu-item-product-sub-product">
-                <Link to="/address">Add </Link>
+                <Link to="/admin/address">Add </Link>
               </span>
             </div>
           </li>
@@ -78,10 +75,10 @@ const Sidebar = (props: Props) => {
             </div>
             <div ref={userRef} className="sidebar__menu-item-product">
               <span className="sidebar__menu-item-product-sub-product">
-                <Link to="/userList">List User</Link>
+                <Link to="/admin/userList">List User</Link>
               </span>
               <span className="sidebar__menu-item-product-sub-product">
-                <Link to="/add-edit-user">Add User</Link>
+                <Link to="/admin/add-edit-user">Add User</Link>
               </span>
             </div>
           </li>
@@ -97,7 +94,7 @@ const Sidebar = (props: Props) => {
             </div>
             <div ref={orderRef} className="sidebar__menu-item-product">
               <span className="sidebar__menu-item-product-sub-product">
-                <Link to="/orderList">List Order</Link>
+                <Link to="/admin/orderList">List Order</Link>
               </span>
               {/* <span className="sidebar__menu-item-product-sub-product">
                 <Link to="/add-edit-user">Add User</Link>

@@ -1,9 +1,7 @@
-import { Badge, IconButton } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "app/hooks";
+import { useAppDispatch } from "app/hooks";
 import { logout } from "features/auth/authSlice";
-import React, { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { NavLink } from "react-router-dom";
-import { io } from "socket.io-client";
 import "./dropdown.scss";
 
 type Props = {
@@ -27,14 +25,6 @@ const clickOutSide = (toggleRef: any, contentRef: any) => {
 };
 
 const Dropdown = (props: Props) => {
-  const [socket, setSocket] = useState<any>();
-  const [count, setCount] = useState<number>(0);
-  const check = useAppSelector((state) => state.socket.check);
-
-  useEffect(() => {
-    setSocket(io("http://localhost:5000"));
-  }, []);
-
   const dispatch = useAppDispatch();
   const toggleRef = useRef(null);
   const contentRef = useRef(null);
@@ -44,18 +34,13 @@ const Dropdown = (props: Props) => {
   return (
     <div className="dropdown">
       <div className="User" ref={toggleRef}>
-        <img src={props?.user} alt="" className="dropdown__img" />
-        {props.icon ? (
-          <IconButton sx={{ color: "#fff" }}>
-            <Badge badgeContent={check} color="error">
-              {props.icon}
-            </Badge>
-          </IconButton>
-        ) : null}
-        {props.icon ? (
-          ""
+        {props.user ? (
+          <>
+            <img src={props?.user} alt="" className="dropdown__img" />
+            <span className="dropdown__name">{props?.name}</span>
+          </>
         ) : (
-          <span className="dropdown__name">{props?.name}</span>
+          "Vui lòng đăng nhập"
         )}
       </div>
 

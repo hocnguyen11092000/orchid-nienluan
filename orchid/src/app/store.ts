@@ -1,4 +1,4 @@
-import productReducer from "features/products/productSlice";
+import productReducer from "features/admin/products/productSlice";
 import {
   configureStore,
   ThunkAction,
@@ -6,11 +6,11 @@ import {
   combineReducers,
 } from "@reduxjs/toolkit";
 import counterReducer from "../features/counter/counterSlice";
-import addressReducer from "../features/address/addressSlice";
+import addressReducer from "../features/admin/address/addressSlice";
 import authReducer from "../features/auth/authSlice";
-import userReducer from "../features/user/userSlice";
+import userReducer from "../features/admin/user/userSlice";
 import socketReducer from "../features/socket/socketSlice";
-import cartReducer from "../features/user-page/cart/cartSlice";
+import cartReducer from "../features/client/cart/cartSlice";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./rootSaga";
 import { createRouterReducer } from "@lagunovsky/redux-react-router";

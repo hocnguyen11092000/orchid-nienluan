@@ -1,12 +1,10 @@
+import { CircularProgress } from "@mui/material";
+import userApi from "api/userApi";
+import { useAppSelector } from "app/hooks";
 import { InputField } from "components/form-controls/InputFields";
 import { Values } from "models";
 import React, { useRef, useState } from "react";
-import { CircularProgress } from "@mui/material";
 import { useForm } from "react-hook-form";
-import Button from "@mui/material/Button";
-import { selectLoging } from "../authSlice";
-import { useAppSelector } from "app/hooks";
-import userApi from "api/userApi";
 import { toast } from "react-toastify";
 
 type Props = {

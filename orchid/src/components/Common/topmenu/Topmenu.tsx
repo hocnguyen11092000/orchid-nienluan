@@ -1,15 +1,12 @@
 import { useAppSelector } from "app/hooks";
-import { User } from "models";
 import React from "react";
 import Dropdown from "../dropdown/Dropdown";
 import "./topmenu.scss";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 type Props = {};
 
 const Topmenu = (props: Props) => {
   let user = localStorage.getItem("currentUser");
 
-  let count = useAppSelector((state) => state.socket.check);
   let currentUser;
   if (user) {
     currentUser = JSON.parse(user);
@@ -32,11 +29,6 @@ const Topmenu = (props: Props) => {
         content={userData}
         _id={userAuth?._id || userRedux?._id || currentUser?._id}
       ></Dropdown>
-      <Dropdown
-        icon={<NotificationsNoneIcon color="primary"></NotificationsNoneIcon>}
-        content={userData}
-      ></Dropdown>
-      {/* <span>{count}</span> */}
     </div>
   );
 };

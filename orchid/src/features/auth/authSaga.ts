@@ -1,10 +1,7 @@
-import { toast } from "react-toastify";
 import { push } from "@lagunovsky/redux-react-router";
 import { PayloadAction } from "@reduxjs/toolkit";
 import userApi from "api/userApi";
-import axios from "axios";
-import { ForgotValues } from "features/user/pages/fogot-password/FogotPassword";
-import { ListResponse } from "models";
+import { toast } from "react-toastify";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { User } from "./../../models/user";
 import {
@@ -15,18 +12,9 @@ import {
   loginSuccess,
   logout,
   resetPassword,
-  resetPasswordSuccess,
   resetPasswordFail,
+  resetPasswordSuccess,
 } from "./authSlice";
-
-// function Login(payload: PayloadAction<LoginPayload>) {
-//   const apiClient = axios.create({
-//     baseURL: "http://localhost:4000",
-//     withCredentials: true,
-//   });
-//   const config = { headers: { "Content-Type": "application/json" } };
-//   return apiClient.post(`/api/v1/login`, payload.payload, config);
-// }
 
 function* handleLogin(action: PayloadAction<LoginPayload>) {
   try {
@@ -36,7 +24,7 @@ function* handleLogin(action: PayloadAction<LoginPayload>) {
     localStorage.setItem("currentUser", JSON.stringify(res.user));
 
     yield put(loginSuccess(res.user));
-    yield put(push("/"));
+    yield put(push("/admin"));
   } catch (error: any) {
     yield put(loginFailed(error.message));
     toast.error(error.response.data.error);
@@ -58,21 +46,13 @@ function* handleResetPassword(action: PayloadAction<ForgotPaload>) {
 
         yield put(resetPasswordSuccess(res.user));
         toast.success("success");
-        yield put(push("/"));
+        yield put(push("/admin"));
       }
     } catch (error: any) {
       yield put(resetPasswordFail(error.message));
     }
   }
 }
-
-// const Logout = () => {
-//   const apiClient = axios.create({
-//     baseURL: "http://localhost:4000",
-//     withCredentials: true,
-//   });
-//   return apiClient.get("/api/v1/logout");
-// };
 
 function* handleLogout() {
   localStorage.removeItem("token");

@@ -1,23 +1,23 @@
+import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
+import RemoveIcon from "@mui/icons-material/Remove";
 import {
   CircularProgress,
   FormControl,
   InputLabel,
+  LinearProgress,
   MenuItem,
   Select,
-  Skeleton,
 } from "@mui/material";
+import productApi from "api/productApi";
 import { useAppDispatch, useAppSelector } from "app/hooks";
-import AddIcon from "@mui/icons-material/Add";
+import { cartActions } from "features/client/cart/cartSlice";
 import { Address, ListParams, Product, User } from "models";
 import { Order } from "models/order";
 import React, { useState } from "react";
 import Popup from "../popup/Popup";
+import TrSkeleton from "../tr-skeleton/TrSkeleton";
 import "./table.scss";
-import RemoveIcon from "@mui/icons-material/Remove";
-import CloseIcon from "@mui/icons-material/Close";
-import TrSkeleton from "../../Common/tr-skeleton/TrSkeleton";
-import { cartActions } from "features/user-page/cart/cartSlice";
-import { RemoveCircle } from "@mui/icons-material";
 
 export interface CartItem {
   _id: string;
@@ -72,6 +72,7 @@ const Table = (props: Props) => {
 
   const dispatch = useAppDispatch();
   const loading = useAppSelector((state) => state.product.loading);
+  const cartItems = useAppSelector((state) => state.cart.cartItems);
   let totalPage = 0;
   if (count) {
     totalPage = Math.ceil(count / 8);
@@ -126,8 +127,23 @@ const Table = (props: Props) => {
     }
   };
 
-  const handleAddQuantity = (id: string) => {
-    dispatch(cartActions.addQuantity(id));
+  const handleAddQuantity = async (id: string) => {
+    try {
+      const {
+        product: { stock },
+      } = await productApi.getById(id);
+      cartItems.forEach(async (item) => {
+        if (item._id === id) {
+          if (Number(item.weight) * Number(item.quantity) < stock) {
+            dispatch(cartActions.addQuantity(id));
+          } else {
+            window.alert("quantity exceeds the allowed quantity");
+          }
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleMinusQuantity = (id: string) => {
@@ -188,6 +204,16 @@ const Table = (props: Props) => {
           </tr>
         </thead>
         <tbody>
+          {loading && (
+            <tr>
+              <td
+                colSpan={9}
+                style={{ background: "#fff", padding: 0, maxHeight: "30px" }}
+              >
+                <LinearProgress />
+              </td>
+            </tr>
+          )}
           {data &&
             data.map((item: Product, index: number) => {
               return (
@@ -226,7 +252,16 @@ const Table = (props: Props) => {
                 </tr>
               );
             })}
-
+          {loadingStatus && (
+            <tr>
+              <td
+                colSpan={9}
+                style={{ background: "#fff", padding: 0, maxHeight: "30px" }}
+              >
+                <LinearProgress />
+              </td>
+            </tr>
+          )}
           {dataOrders &&
             dataOrders.map((item: Order, index: number) => {
               return (
