@@ -1,12 +1,11 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import orderApi from "api/orderApi";
-import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "app/hooks";
+import { useAppDispatch } from "app/hooks";
 import Popup from "components/Common/popup/Popup";
 import { socketAcions } from "features/socket/socketSlice";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import io from "socket.io-client";
 import { cartActions } from "../cart/cartSlice";
@@ -27,9 +26,7 @@ const CheckOut = (props: Props) => {
 
   const { state } = useLocation() as any;
   const dispatch = useAppDispatch();
-
   const cartItems = state?.cartItems;
-
   const total = cartItems.reduce(
     (x: number, y: any) =>
       x + y.price * y.quantity - (y.price * y.quantity * y.discount) / 100,
@@ -60,11 +57,13 @@ const CheckOut = (props: Props) => {
       dispatch(cartActions.clearCart());
       dispatch(socketAcions.sendData(data));
       dispatch(socketAcions.setCheck());
+
       setCheckOutSuccess(true);
       socket.emit("sendOrder", res.order);
       localStorage.setItem("socket", Math.random().toString());
     } catch (error: any) {
       const statusCode = error.response.status;
+
       if (statusCode == "401") {
         navigate("/admin/login");
       } else {

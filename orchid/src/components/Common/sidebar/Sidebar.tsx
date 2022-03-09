@@ -96,9 +96,6 @@ const Sidebar = (props: Props) => {
               <span className="sidebar__menu-item-product-sub-product">
                 <Link to="/admin/orderList">List Order</Link>
               </span>
-              {/* <span className="sidebar__menu-item-product-sub-product">
-                <Link to="/add-edit-user">Add User</Link>
-              </span> */}
             </div>
           </li>
         </ul>

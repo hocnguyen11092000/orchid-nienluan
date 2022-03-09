@@ -9,6 +9,7 @@ const ProtectedRoute = (props: Props) => {
   const currentUserRedux: any = useAppSelector(
     (state) => state.auth.currentUser
   );
+
   if (!currentUser) {
     return <Login></Login>;
   }

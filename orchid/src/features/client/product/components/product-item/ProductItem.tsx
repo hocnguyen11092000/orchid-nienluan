@@ -9,6 +9,7 @@ type Props = {
 const ProductItem = (props: Props) => {
   const { item } = props;
   const navigate = useNavigate();
+
   const handleClick = (id: string) => {
     if (id) {
       navigate(`/product/${id}`);

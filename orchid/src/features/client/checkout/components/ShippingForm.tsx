@@ -1,12 +1,7 @@
-import { InputField } from "components/form-controls/InputFields";
-
-import React, { useEffect, useRef, useState } from "react";
 import { CircularProgress } from "@mui/material";
+import { InputField } from "components/form-controls/InputFields";
+import React from "react";
 import { useForm } from "react-hook-form";
-import Button from "@mui/material/Button";
-import { useAppSelector } from "app/hooks";
-import userApi from "api/userApi";
-import { toast } from "react-toastify";
 
 type Props = {
   onSubmit: (values: any) => void;

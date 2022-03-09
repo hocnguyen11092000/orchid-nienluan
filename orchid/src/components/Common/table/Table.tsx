@@ -16,7 +16,6 @@ import { Address, ListParams, Product, User } from "models";
 import { Order } from "models/order";
 import React, { useState } from "react";
 import Popup from "../popup/Popup";
-import TrSkeleton from "../tr-skeleton/TrSkeleton";
 import "./table.scss";
 
 export interface CartItem {
@@ -76,6 +75,7 @@ const Table = (props: Props) => {
   const loading = useAppSelector((state) => state.product.loading);
   const [loadingQtt, setLoadingQtt] = useState<boolean>(false);
   const cartItems = useAppSelector((state) => state.cart.cartItems);
+
   let totalPage = 0;
   if (count) {
     totalPage = Math.ceil(count / 8);
@@ -133,11 +133,13 @@ const Table = (props: Props) => {
   const handleAddQuantity = async (id: string) => {
     let check = false;
     setLoadingQtt(true);
+
     try {
       const {
         product: { stock },
       } = await productApi.getById(id);
       setLoadingQtt(false);
+
       cartItems.forEach(async (item) => {
         if (item._id === id && !check) {
           if (Number(item.weight) * Number(item.quantity) < stock) {
@@ -218,7 +220,6 @@ const Table = (props: Props) => {
                 })}
               </tr>
             </thead>
-
             <tbody>
               {data &&
                 data.map((item: Product, index: number) => {

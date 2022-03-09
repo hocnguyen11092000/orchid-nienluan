@@ -46,6 +46,7 @@ const FogotPassword = (props: Props) => {
       }
     }
   };
+
   return (
     <div className="forgot-password">
       <h2 className="forgot-password__heading">Reset Password</h2>

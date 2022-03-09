@@ -18,7 +18,6 @@ type Props = {};
 
 const ListProduct = (props: Props) => {
   const [page, setPage] = React.useState<number>(1);
-
   const [filter, setFilter] = useState<any>({
     page,
     keyword: "",
@@ -33,6 +32,7 @@ const ListProduct = (props: Props) => {
       page: value,
     });
   };
+
   const fetchProductList = async (filter: any) => {
     const res: ListResponse<Product> = await productApi.getAll(filter);
     return res;
@@ -42,8 +42,6 @@ const ListProduct = (props: Props) => {
     ListResponse<Product>,
     ErrorConstructor
   >(["fetchProducts", filter], () => fetchProductList(filter));
-
-  // if (isLoading) return <div>loading...</div>;
 
   if (error) return <div>error</div>;
 
@@ -85,8 +83,6 @@ const ListProduct = (props: Props) => {
       "price[lte]": value,
     });
   };
-
-  // console.log(filter);
 
   return (
     <div

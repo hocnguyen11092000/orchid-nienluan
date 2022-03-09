@@ -24,6 +24,7 @@ const DetailProduct = (props: Props) => {
       quantity: 1,
     },
   });
+
   const { id } = useParams();
   const cartItems = useAppSelector((state) => state.cart.cartItems);
 
@@ -49,6 +50,7 @@ const DetailProduct = (props: Props) => {
 
   const handleFormSubmit = async (values: any) => {
     values.quantity = Number.parseInt(values.quantity);
+
     if (data) {
       values._id = data.product._id;
       values.name = data.product.name;
@@ -57,12 +59,14 @@ const DetailProduct = (props: Props) => {
       values.discount = Number.parseInt(data.product.discount);
       values.weight = Number.parseFloat(data.product.weight);
     }
+
     if (
       Number.parseInt(values.quantity) *
         Number.parseInt(data?.product.weight) <=
       data?.product.stock
     ) {
       let check = false;
+
       cartItems.forEach(async (item) => {
         if (item._id === id) {
           if (
@@ -77,6 +81,7 @@ const DetailProduct = (props: Props) => {
           }
         }
       });
+
       if (!check) {
         dispatch(cartActions.addToCart(values));
       }

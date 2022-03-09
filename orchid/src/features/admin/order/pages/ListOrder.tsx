@@ -1,6 +1,5 @@
 import { LinearProgress } from "@mui/material";
 import orderApi from "api/orderApi";
-import { useAppDispatch, useAppSelector } from "app/hooks";
 import Table from "components/Common/table/Table";
 import { descData } from "features/admin/Home/pages/Home";
 import { Order } from "models/order";
@@ -29,6 +28,7 @@ const head = [
 ];
 
 const ListOrder = (props: Props) => {
+  const { onChangeStatus, loading, mg } = props;
   const [orderLoading, setOrderLoading] = useState<boolean>(false);
   const [socket, setSocket] = useState<any>();
 
@@ -36,7 +36,6 @@ const ListOrder = (props: Props) => {
     setSocket(io("http://localhost:5000"));
   }, []);
 
-  const dispatch = useAppDispatch();
   const [order, setOrder] = useState<any>();
   const [newOrder, setNewOrder] = useState<any>("");
   const [render, setRender] = useState<boolean>(false);
@@ -71,7 +70,7 @@ const ListOrder = (props: Props) => {
       toast.error("Delete order fail");
     }
   };
-  const { onChangeStatus, loading, mg } = props;
+
   return (
     <div className={`order`} style={{ margin: `20px ${mg}` }}>
       <div style={{ padding: "10px 0" }}>

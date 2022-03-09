@@ -33,6 +33,7 @@ const SearchProduct = (props: Props) => {
       onSubmit(value);
     }
   };
+
   return (
     <div className="search-product">
       <form onSubmit={handleSubmit(handleFormSubmit)}>

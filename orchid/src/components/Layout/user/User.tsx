@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useAppSelector } from "app/hooks";
-import ProtectedRoute from "components/Common/protected-route/ProtectedRoute";
 import Cart from "features/client/cart/Cart";
 import CheckOut from "features/client/checkout/CheckOut";
 import DetailProduct from "features/client/product/pages/detailProduct/DetailProduct";
@@ -21,6 +20,7 @@ type Props = {};
 const UserLayout = (props: Props) => {
   const cart = useAppSelector((state) => state.cart.cartItems);
   let count = 0;
+
   cart.forEach((item) => (count += item.quantity));
   return (
     <>

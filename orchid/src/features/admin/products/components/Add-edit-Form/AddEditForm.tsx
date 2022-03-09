@@ -18,6 +18,7 @@ const AddEditForm = (props: Props) => {
   const [imagesPreview, setImagesPreview] = useState<any>([]);
   const [dataCkediter, setDataCkediter] = useState<any>();
   const { id } = useParams();
+
   const initialValues: any = {
     name: "",
     description: "",
@@ -30,6 +31,7 @@ const AddEditForm = (props: Props) => {
   console.log(init);
 
   const values = Boolean(id) ? init : initialValues;
+
   const {
     control,
     handleSubmit,
@@ -73,7 +75,6 @@ const AddEditForm = (props: Props) => {
           setImages((old: any) => [...old, reader.result]);
         }
       };
-
       reader.readAsDataURL(file);
     });
   };
@@ -81,6 +82,7 @@ const AddEditForm = (props: Props) => {
   const handleFormSubmit = async (values: any) => {
     values.images = images;
     values.description = dataCkediter;
+
     if (onSubmit) {
       await onSubmit(values);
     }
@@ -118,19 +120,7 @@ const AddEditForm = (props: Props) => {
                 const data = editor.getData();
                 setDataCkediter(data);
               }}
-              // onBlur={(event: any, editor: any) => {
-              //   console.log("Blur.", editor);
-              // }}
-              // onFocus={(event: any, editor: any) => {
-              //   console.log("Focus.", editor);
-              // }}
             />
-            {/* <InputField
-              name="description"
-              control={control}
-              id="description"
-              placeholder="Nhập description..."
-            ></InputField> */}
           </div>
           <div className="add-edit__form-form-group">
             <label htmlFor="price">price</label>

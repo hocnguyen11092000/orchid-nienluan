@@ -17,6 +17,7 @@ const Cart = (props: Props) => {
     "discount",
     "total",
   ];
+
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const itemsPrice = cartItems
     .reduce((x, y) => x + y.quantity * y.price, 0)

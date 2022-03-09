@@ -4,12 +4,6 @@ import React, { useRef, useState } from "react";
 import Marker from "./Marker";
 
 function ImageMeta() {
-  // const Map = () => {
-  //   return <GoogleMap
-  //     defaultZoom={10}
-  //     defaultCenter={{lat: 54.421532, lng: -75.697189}}
-  //   ></GoogleMap>
-  // };
   const fileRef = useRef(null);
   const [gpsImg, setGpsImg] = useState({
     lat: "",

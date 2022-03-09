@@ -74,6 +74,7 @@ const AddEditUser = (props: Props) => {
       }
     }
   };
+
   return (
     <div className="add-edit-user">
       <h2 className="add-edit-user__heading">

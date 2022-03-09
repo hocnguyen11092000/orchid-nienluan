@@ -1,7 +1,6 @@
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { Grid } from "@mui/material";
 import orderApi from "api/orderApi";
-import { useAppSelector } from "app/hooks";
 import ProtectedRoute from "components/Common/protected-route/ProtectedRoute";
 import ListOrder from "features/admin/order/pages/ListOrder";
 import React, { useEffect, useState } from "react";
@@ -85,38 +84,14 @@ export const descData = (data: any) => {
 
 const Home = (props: Props) => {
   const [status, setStatus] = useState<string>("Processing");
-  const check = useAppSelector((state) => state.socket.check);
-  const count = useAppSelector((state) => state.cart.cartItems);
-
   const navigate = useNavigate();
   const [newOrder, setNewOrder] = useState<any>();
   const [order, setOrder] = useState<any>([]);
-  const [socket, setSocket] = useState<any>();
-
-  // useEffect(() => {
-  //   setSocket(io("http://localhost:5000"));
-  // }, []);
-
-  // const handleOn = () => {
-  //   socket?.on("server", (data: any) => {
-  //     const date = new Date();
-  //     console.log(data + date.toISOString());
-
-  //     // const date = new Date();
-  //     // setOrder(descData([...order, data]));
-  //     // setNewOrder(data);
-  //   });
-  // };
-  //
-
-  // useCallback(handleOn, [newOrder]);
-  // console.log("re render");
 
   const [processing, setProcessing] = useState<any>();
   const [delivered, setdelivered] = useState<any>();
   const [refused, setrefused] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false);
-  const [another, setAnother] = useState<any>();
 
   useEffect(() => {
     (async () => {

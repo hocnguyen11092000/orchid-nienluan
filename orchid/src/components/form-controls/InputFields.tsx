@@ -47,12 +47,5 @@ export function InputField({
         />
       )}
     ></Controller>
-    // <input
-    //   value={value}
-    //   onChange={onChange}
-    //   onBlur={onBlur}
-    //   type={type}
-    //   placeholder={placeholder}
-    // />
   );
 }

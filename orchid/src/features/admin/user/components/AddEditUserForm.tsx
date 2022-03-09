@@ -18,26 +18,6 @@ const AddEditUserForm = (props: Props) => {
   const { onSubmit, init } = props;
   const { id } = useParams();
 
-  // useEffect(() => {
-  //   function getBase64Image(img: any) {
-  //     var canvas = document.createElement("canvas");
-  //     canvas.width = img.width;
-  //     canvas.height = img.height;
-  //     var ctx: any = canvas.getContext("2d");
-  //     ctx.drawImage(img, 0, 0);
-  //     var dataURL = canvas.toDataURL("image/png");
-  //     dataURL = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-  //     // console.log(dataURL);
-
-  //     return "data:image/png;base64," + dataURL;
-  //   }
-
-  //   var base64 = getBase64Image(document.getElementById("imageid"));
-  //   console.log(base64);
-  // }, [id]);
-
-  // console.log(avatar);
-
   const {
     handleSubmit,
     formState: { isSubmitting },

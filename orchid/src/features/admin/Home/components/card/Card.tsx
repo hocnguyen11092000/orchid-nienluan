@@ -8,6 +8,7 @@ type Props = {
 
 const Card = (props: Props) => {
   const { listCard } = props;
+
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
       {listCard &&

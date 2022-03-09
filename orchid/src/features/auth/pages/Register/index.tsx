@@ -1,10 +1,7 @@
 import { unwrapResult } from "@reduxjs/toolkit";
 import { useAppDispatch } from "app/hooks";
 import { addUser } from "features/admin/user/userSlice";
-import { login } from "features/auth/authSlice";
-import LoginForm from "features/auth/components/LoginForm";
 import RegisterForm from "features/auth/components/RegisterForm";
-import { Values } from "models";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./login.scss";
@@ -34,6 +31,7 @@ const Register = (props: Props) => {
       toast.error("Register error");
     }
   };
+
   return (
     <div className="login">
       <RegisterForm onSubmit={handleFormSubmit}></RegisterForm>

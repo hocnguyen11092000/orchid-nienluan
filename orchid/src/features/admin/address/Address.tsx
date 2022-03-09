@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from "app/hooks";
 import Table from "components/Common/table/Table";
-import React, { useEffect } from "react";
-import { fetchAddress, setFilter } from "./addressSlice";
-import "./address.scss";
 import { Address, ListParams } from "models";
+import React, { useEffect } from "react";
+import "./address.scss";
+import { fetchAddress, setFilter } from "./addressSlice";
 
 type Props = {};
 
@@ -19,8 +19,10 @@ const AddressPage = (props: Props) => {
   const handlePagination = (page: number) => {
     dispatch(setFilter({ ...filter, page }));
   };
+
   const head = ["id", "user", "company", "address", "phoneNumber"];
   const address: Address[] = useAppSelector((state) => state.address.list);
+
   return (
     <div className="address">
       <h2 className="address__heading">List address</h2>

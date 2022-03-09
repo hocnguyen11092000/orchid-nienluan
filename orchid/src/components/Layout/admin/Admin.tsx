@@ -53,7 +53,6 @@ const AdminLayout = (props: Props) => {
               path="/add-edit-user/:id"
               element={<AddEditUser></AddEditUser>}
             ></Route>
-
             {/* order */}
             <Route path="/orderList/" element={<ListOrder></ListOrder>}></Route>
           </Route>

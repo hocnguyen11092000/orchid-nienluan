@@ -13,6 +13,7 @@ const Category = (props: Props) => {
     const res: any = await productApi.getAddCat();
     return res;
   };
+
   const { isLoading, error, data } = useQuery<
     ListResponse<any>,
     ErrorConstructor

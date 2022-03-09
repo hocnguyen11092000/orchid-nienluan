@@ -6,8 +6,8 @@ type Props = {};
 
 const Topmenu = (props: Props) => {
   let user = localStorage.getItem("currentUser");
-
   let currentUser;
+
   if (user) {
     currentUser = JSON.parse(user);
   }
@@ -21,11 +21,7 @@ const Topmenu = (props: Props) => {
     <div className="topmenu">
       <Dropdown
         name={userAuth?.name || userRedux?.name || currentUser?.name}
-        user={
-          userAuth?.avatar?.url ||
-          // userRedux?.avatar?.url ||
-          currentUser?.avatar.url
-        }
+        user={userAuth?.avatar?.url || currentUser?.avatar.url}
         content={userData}
         _id={userAuth?._id || userRedux?._id || currentUser?._id}
       ></Dropdown>

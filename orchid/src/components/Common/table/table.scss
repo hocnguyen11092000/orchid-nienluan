@@ -1,14 +1,12 @@
 @use "../../../scss/" as *;
 .table {
   width: 100%;
-  // min-height: 340px;
 }
 
 table,
 th,
 tr,
 td {
-  // border: 1px solid #ccc;
   border-collapse: collapse;
   text-align: center;
   border: none !important;
@@ -22,12 +20,6 @@ td {
   border: none;
   font-size: 0.9rem;
 }
-
-// tr:hover {
-//   background-color: $second-color;
-//   cursor: pointer;
-//   color: $txt-color;
-// }
 
 tr:nth-child(2n + 1) {
   background-color: rgb(245, 245, 250);

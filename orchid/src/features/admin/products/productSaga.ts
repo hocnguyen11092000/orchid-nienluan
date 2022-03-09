@@ -21,7 +21,6 @@ function* fetchProductList(action: PayloadAction<ListParams>) {
 function* deleteProduct(action: PayloadAction<any>) {
   try {
     yield call(productApi.remove, action.payload);
-
     yield put(productActions.deleteProductSuccess(action.payload));
   } catch (error) {
     yield put(productActions.deleteProductFail());

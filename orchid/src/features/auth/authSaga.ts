@@ -37,6 +37,7 @@ function* handleLogin(action: PayloadAction<LoginPayload>) {
 
 function* handleResetPassword(action: PayloadAction<ForgotPaload>) {
   const { values, token } = action.payload;
+
   if (token) {
     try {
       const res: User = yield call(userApi.resetPassword, token, values);
@@ -47,7 +48,6 @@ function* handleResetPassword(action: PayloadAction<ForgotPaload>) {
 
       if (res.user) {
         localStorage.setItem("currentUser", JSON.stringify(res.user));
-
         yield put(resetPasswordSuccess(res.user));
         toast.success("success");
 
