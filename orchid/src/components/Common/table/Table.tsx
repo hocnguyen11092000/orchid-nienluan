@@ -296,7 +296,7 @@ const Table = (props: Props) => {
                         <span className="table-edit">Sửa</span>
                       </td>
                       {orderLoading ? (
-                        <td>Đang xóa...</td>
+                        <td></td>
                       ) : (
                         <td
                           style={{ cursor: "pointer" }}

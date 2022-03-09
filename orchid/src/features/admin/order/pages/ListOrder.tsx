@@ -48,13 +48,10 @@ const ListOrder = (props: Props) => {
 
   useEffect(() => {
     (async () => {
-      setOrderLoading(true);
       try {
         const data = await orderApi.getAll();
         setOrder(descData(data.orders));
-        setOrderLoading(false);
       } catch (error) {
-        setOrderLoading(false);
         console.log("Error: " + error);
       }
     })();
@@ -62,12 +59,15 @@ const ListOrder = (props: Props) => {
   console.log("re render");
 
   const handleDeleteOrder = async (id: string) => {
+    setOrderLoading(true);
     try {
       await orderApi.remove(id);
       toast.success("Delete order successfully");
+      setOrderLoading(false);
       setRender(!render);
     } catch (error) {
       toast.error("Delete order fail");
+      setOrderLoading(false);
     }
   };
 
