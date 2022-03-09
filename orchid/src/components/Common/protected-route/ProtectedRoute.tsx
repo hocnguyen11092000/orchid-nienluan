@@ -5,10 +5,18 @@ import { useAppSelector } from "../../../app/hooks";
 interface Props {}
 
 const ProtectedRoute = (props: Props) => {
-  const currentUser = useAppSelector((state) => state.auth.currentUser);
-  const token = localStorage.getItem("token");
+  const currentUser: any = localStorage.getItem("currentUser");
 
-  return currentUser || token ? <Outlet></Outlet> : <Login></Login>;
+  const { role } = JSON.parse(currentUser);
+
+  const currentUserRedux: any = useAppSelector(
+    (state) => state.auth.currentUser
+  );
+  return currentUserRedux?.role == "admin" || role == "admin" ? (
+    <Outlet></Outlet>
+  ) : (
+    <Login></Login>
+  );
 };
 
 export default ProtectedRoute;

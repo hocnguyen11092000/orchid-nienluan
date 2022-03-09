@@ -24,7 +24,11 @@ function* handleLogin(action: PayloadAction<LoginPayload>) {
     localStorage.setItem("currentUser", JSON.stringify(res.user));
 
     yield put(loginSuccess(res.user));
-    yield put(push("/admin"));
+    if (res.user.role == "user") {
+      yield put(push("/"));
+    } else {
+      yield put(push("/admin"));
+    }
   } catch (error: any) {
     yield put(loginFailed(error.message));
     toast.error(error.response.data.error);
@@ -46,7 +50,12 @@ function* handleResetPassword(action: PayloadAction<ForgotPaload>) {
 
         yield put(resetPasswordSuccess(res.user));
         toast.success("success");
-        yield put(push("/admin"));
+
+        if (res.user.role == "user") {
+          yield put(push("/checkout"));
+        } else {
+          yield put(push("/admin"));
+        }
       }
     } catch (error: any) {
       yield put(resetPasswordFail(error.message));

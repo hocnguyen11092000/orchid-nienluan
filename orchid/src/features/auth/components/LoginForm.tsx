@@ -1,10 +1,11 @@
-import { CircularProgress } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import userApi from "api/userApi";
 import { useAppSelector } from "app/hooks";
 import { InputField } from "components/form-controls/InputFields";
 import { Values } from "models";
 import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 type Props = {
@@ -73,7 +74,7 @@ const LoginForm = (props: Props) => {
     <>
       <div className="login-form">
         <div className="login-form__title">
-          <h3>Đăng nhập</h3>
+          <h3>LOGIN</h3>
         </div>
         <div className="form">
           <form onSubmit={handleSubmit(handleFormSubmit)}>
@@ -98,6 +99,18 @@ const LoginForm = (props: Props) => {
             <div className="form-group">
               <span className="forgot" ref={toggleRef}>
                 Forgot your password ?
+              </span>
+            </div>
+            <div className="form-group">
+              <span className="forgot" ref={toggleRef}>
+                Don't have an account
+                <span>
+                  <Link to="/admin/register">
+                    <span style={{ marginLeft: "15px", fontWeight: "bold" }}>
+                      Register here
+                    </span>
+                  </Link>
+                </span>
               </span>
             </div>
             <div className="form-group">

@@ -69,7 +69,8 @@ const DetailProduct = (props: Props) => {
             Number(item.weight) * Number(item.quantity) <
             data?.product.stock
           ) {
-            dispatch(cartActions.addQuantity(id));
+            dispatch(cartActions.addToCart(values));
+            check = true;
           } else {
             check = true;
             window.alert("quantity exceeds the allowed quantity ");

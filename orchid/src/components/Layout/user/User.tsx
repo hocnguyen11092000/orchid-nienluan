@@ -52,22 +52,24 @@ const UserLayout = (props: Props) => {
             </IconButton>
           </Link>
           <Button color="inherit" size="small">
-            Login
+            <Link to="/admin/login" style={{ color: "#fff" }}>
+              LOGIN
+            </Link>
           </Button>
         </Toolbar>
       </AppBar>
       <Routes>
-        <Route element={<ProtectedRoute></ProtectedRoute>}>
-          {/* product */}
-          <Route path="/" element={<ListProduct></ListProduct>}></Route>
-          <Route path="/checkout" element={<CheckOut></CheckOut>}></Route>
-          <Route
-            path="/product/:id"
-            element={<DetailProduct></DetailProduct>}
-          ></Route>
-          {/* cart */}
-          <Route path="/cart" element={<Cart></Cart>}></Route>
-        </Route>
+        {/* <Route element={<ProtectedRoute></ProtectedRoute>}> */}
+        {/* product */}
+        <Route path="/" element={<ListProduct></ListProduct>}></Route>
+        <Route path="/checkout" element={<CheckOut></CheckOut>}></Route>
+        <Route
+          path="/product/:id"
+          element={<DetailProduct></DetailProduct>}
+        ></Route>
+        {/* cart */}
+        <Route path="/cart" element={<Cart></Cart>}></Route>
+        {/* </Route> */}
       </Routes>
     </>
   );

@@ -1,6 +1,6 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import orderApi from "api/orderApi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "app/hooks";
 import Popup from "components/Common/popup/Popup";
 import { socketAcions } from "features/socket/socketSlice";
@@ -18,6 +18,7 @@ type Props = {
 
 const CheckOut = (props: Props) => {
   const [socket, setSocket] = useState<any>();
+  const navigate = useNavigate();
   const [checkoutSuccess, setCheckOutSuccess] = useState<boolean>(false);
 
   useEffect(() => {
@@ -62,8 +63,13 @@ const CheckOut = (props: Props) => {
       setCheckOutSuccess(true);
       socket.emit("sendOrder", res.order);
       localStorage.setItem("socket", Math.random().toString());
-    } catch (error) {
-      toast.error("fail to add order");
+    } catch (error: any) {
+      const statusCode = error.response.status;
+      if (statusCode == "401") {
+        navigate("/admin/login");
+      } else {
+        toast.error("fail to add order");
+      }
     }
   };
 
