@@ -22,7 +22,7 @@ const addressApi = {
     return axiosClient.patch(url, data);
   },
 
-  remove(id: string): Promise<any> {
+  remove(id: string): Promise<string> {
     const url = `/address/${id}`;
     return axiosClient.delete(url);
   },

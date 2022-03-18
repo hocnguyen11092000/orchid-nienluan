@@ -30,7 +30,7 @@ export const fetchAddress = createAsyncThunk(
 );
 
 const addressSlice = createSlice({
-  name: "product",
+  name: "address",
   initialState,
   reducers: {
     setFilter(state, action: PayloadAction<ListParams>) {
@@ -44,8 +44,9 @@ const addressSlice = createSlice({
       })
       .addCase(
         fetchAddress.fulfilled,
-        (state: any, action: PayloadAction<ListResponse<Address>>) => {
+        (state: AddressState, action: PayloadAction<ListResponse<Address>>) => {
           state.list = action.payload.data;
+          state.loading = false;
           state.addressCount = action.payload.count;
         }
       );

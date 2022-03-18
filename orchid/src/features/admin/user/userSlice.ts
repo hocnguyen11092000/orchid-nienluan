@@ -93,7 +93,7 @@ const useSlice = createSlice({
 });
 
 //actions
-const userActions = useSlice.actions;
+export const userActions = useSlice.actions;
 
 // reducer
 export default useSlice.reducer;

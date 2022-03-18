@@ -48,10 +48,13 @@ const ListOrder = (props: Props) => {
 
   useEffect(() => {
     (async () => {
+      setOrderLoading(true);
       try {
         const data = await orderApi.getAll();
+        setOrderLoading(false);
         setOrder(descData(data.orders));
       } catch (error) {
+        setOrderLoading(false);
         console.log("Error: " + error);
       }
     })();

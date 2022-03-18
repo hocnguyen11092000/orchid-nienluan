@@ -10,7 +10,7 @@ type Props = {
 const Category = (props: Props) => {
   const { onChange } = props;
   const fetchCategory = async () => {
-    const res: any = await productApi.getAddCat();
+    const res: any = await productApi.getAllCategory();
     return res;
   };
 

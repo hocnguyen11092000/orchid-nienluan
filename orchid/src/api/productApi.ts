@@ -7,12 +7,12 @@ const productApi = {
     return axiosClient.get(url, { params });
   },
 
-  getAddCat(): Promise<ListResponse<any>> {
+  getAllCategory(): Promise<Array<String>> {
     const url = "/category";
     return axiosClient.get(url);
   },
 
-  getById(id: string): Promise<any> {
+  getById(id: string): Promise<ListResponse<Product>> {
     const url = `/product/${id}`;
     return axiosClient.get(url);
   },
@@ -27,7 +27,7 @@ const productApi = {
     return axiosClient.put(url, data);
   },
 
-  remove(id: string): Promise<any> {
+  remove(id: string): Promise<string> {
     const url = `/admin/product/${id}`;
     return axiosClient.delete(url);
   },

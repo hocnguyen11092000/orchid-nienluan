@@ -15,7 +15,10 @@ const ProtectedRoute = (props: Props) => {
   }
   const { role } = JSON.parse(currentUser);
 
-  return currentUserRedux?.role == "admin" || role == "admin" ? (
+  return currentUserRedux?.role == "admin" ||
+    currentUserRedux?.role == "staff" ||
+    role == "admin" ||
+    role == "staff" ? (
     <Outlet></Outlet>
   ) : (
     <Login></Login>

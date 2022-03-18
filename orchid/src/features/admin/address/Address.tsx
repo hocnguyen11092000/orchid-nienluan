@@ -22,6 +22,7 @@ const AddressPage = (props: Props) => {
 
   const head = ["id", "user", "company", "address", "phoneNumber"];
   const address: Address[] = useAppSelector((state) => state.address.list);
+  const loadingAddress = useAppSelector((state) => state.address.loading);
 
   return (
     <div className="address">
@@ -33,6 +34,7 @@ const AddressPage = (props: Props) => {
           filter={filter}
           count={count}
           pagination={handlePagination}
+          addressLoading={loadingAddress}
         ></Table>
       </div>
     </div>

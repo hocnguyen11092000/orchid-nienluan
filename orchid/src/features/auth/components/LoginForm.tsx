@@ -102,7 +102,7 @@ const LoginForm = (props: Props) => {
               </span>
             </div>
             <div className="form-group">
-              <span className="forgot" ref={toggleRef}>
+              <span className="forgot">
                 Don't have an account
                 <span>
                   <Link to="/admin/register">

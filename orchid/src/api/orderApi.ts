@@ -8,22 +8,22 @@ const orderApi = {
     return axiosClient.get(url);
   },
 
-  getById(id: string): Promise<any> {
-    const url = `/product/${id}`;
+  getById(id: string): Promise<Order> {
+    const url = `/order/${id}`;
     return axiosClient.get(url);
   },
 
-  add(data: FormData): Promise<Product> {
+  add(data: FormData): Promise<Order> {
     const url = "/order/new";
     return axiosClient.post(url, data);
   },
 
-  update(id: string, status: any): Promise<any> {
+  updateStatus(id: string, status: any): Promise<string> {
     const url = `/admin/order/${id}`;
     return axiosClient.put(url, { status });
   },
 
-  remove(id: string): Promise<any> {
+  remove(id: string): Promise<string> {
     const url = `/admin/order/${id}`;
     return axiosClient.delete(url);
   },

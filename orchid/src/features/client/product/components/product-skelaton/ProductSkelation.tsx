@@ -12,8 +12,8 @@ const ProductSkelation = (props: Props) => {
             <div
               style={{
                 marginBottom: "20px",
-                maxHeight: "256px",
-                height: "256px",
+                maxHeight: "265px",
+                height: "265px",
               }}
             >
               <Skeleton

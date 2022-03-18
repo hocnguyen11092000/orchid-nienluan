@@ -15,10 +15,10 @@ router.route("/order/:id").get(isAuthenticateUser, getSingleOrder);
 router.route("/orders/me").get(isAuthenticateUser, myOrders);
 router
   .route("/admin/orders")
-  .get(isAuthenticateUser, authorizeRoles("admin"), getAllOrders);
+  .get(isAuthenticateUser, authorizeRoles("admin", "staff"), getAllOrders);
 router
   .route("/admin/order/:id")
-  .put(isAuthenticateUser, authorizeRoles("admin"), updateOrder)
-  .delete(isAuthenticateUser, authorizeRoles("admin"), deleteOrder);
+  .put(isAuthenticateUser, authorizeRoles("admin", "staff"), updateOrder)
+  .delete(isAuthenticateUser, authorizeRoles("admin", "staff"), deleteOrder);
 
 module.exports = router;

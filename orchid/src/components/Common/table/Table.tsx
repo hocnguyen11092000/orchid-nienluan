@@ -45,6 +45,7 @@ type Props = {
   loadingStatus?: boolean;
   loading?: boolean;
   orderLoading?: boolean;
+  addressLoading?: boolean;
 };
 
 const Table = (props: Props) => {
@@ -69,6 +70,7 @@ const Table = (props: Props) => {
     onDeleteOrder,
     loadingStatus,
     orderLoading,
+    addressLoading,
   } = props;
 
   const dispatch = useAppDispatch();
@@ -308,6 +310,20 @@ const Table = (props: Props) => {
                     </tr>
                   );
                 })}
+              {addressLoading && (
+                <tr>
+                  <td
+                    colSpan={9}
+                    style={{
+                      background: "#fff",
+                      padding: 0,
+                      maxHeight: "30px",
+                    }}
+                  >
+                    <LinearProgress />
+                  </td>
+                </tr>
+              )}
               {dataAddress &&
                 dataAddress.map((item: Address, index: number) => {
                   return (

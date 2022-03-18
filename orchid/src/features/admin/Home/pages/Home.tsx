@@ -133,7 +133,7 @@ const Home = (props: Props) => {
   const handleChangeStatus = async (id: string, status: any) => {
     setLoading(true);
     try {
-      await orderApi.update(id, status);
+      await orderApi.updateStatus(id, status);
       toast.success("Update status successfully");
       setStatus(status);
       setLoading(false);

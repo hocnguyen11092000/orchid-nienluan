@@ -59,7 +59,7 @@ const Sidebar = (props: Props) => {
                 <Link to="/admin/address">List Address</Link>
               </span>
               <span className="sidebar__menu-item-product-sub-product">
-                <Link to="/admin/address">Add </Link>
+                <Link to="/admin/address">Add Address</Link>
               </span>
             </div>
           </li>
