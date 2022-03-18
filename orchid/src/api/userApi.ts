@@ -8,6 +8,7 @@ const userApi = {
     const url = "/login";
     return axiosClient.post(url, params);
   },
+
   getAll(params: ListParams): Promise<ListResponse<User>> {
     const url = "/admin/users";
     return axiosClient.get(url, { params });
