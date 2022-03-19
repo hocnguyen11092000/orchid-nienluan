@@ -18,7 +18,7 @@ function* fetchProductList(action: PayloadAction<ListParams>) {
   }
 }
 
-function* deleteProduct(action: PayloadAction<any>) {
+function* deleteProduct(action: PayloadAction<string>) {
   try {
     yield call(productApi.remove, action.payload);
     yield put(productActions.deleteProductSuccess(action.payload));

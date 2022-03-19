@@ -28,13 +28,13 @@ const DetailProduct = (props: Props) => {
   const { id } = useParams();
   const cartItems = useAppSelector((state) => state.cart.cartItems);
 
-  const fetchProductDetail = async (id: any) => {
+  const fetchProductDetail = async (id: string) => {
     const res: ListResponse<Product> = await productApi.getById(id);
     return res;
   };
 
   const DetailProduct = useQuery(["productDetail", id], () =>
-    fetchProductDetail(id)
+    fetchProductDetail(id as string)
   );
 
   const { isLoading, error, data } = DetailProduct;

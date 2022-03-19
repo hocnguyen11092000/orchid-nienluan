@@ -8,6 +8,7 @@ type Props = {
 
 const Popup = (props: Props) => {
   const { children, active } = props;
+
   return <div className={`popup ${active ? "active" : ""}`}>{children}</div>;
 };
 

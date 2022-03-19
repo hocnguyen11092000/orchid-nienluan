@@ -11,6 +11,7 @@ import io from "socket.io-client";
 import { cartActions } from "../cart/cartSlice";
 import "./checkout.scss";
 import ShippingForm from "./components/ShippingForm";
+
 type Props = {
   onChange?: (x: any) => void;
 };

@@ -23,7 +23,7 @@ const Cart = (props: Props) => {
     .reduce((x, y) => x + y.quantity * y.price, 0)
     .toFixed(3);
 
-  const handleCheckOut = (items: any) => {
+  const handleCheckOut = () => {
     navigate("/checkout", { state: { cartItems } });
   };
 
@@ -39,7 +39,7 @@ const Cart = (props: Props) => {
             <span>{itemsPrice}đ</span>
           </div>
           <div className="cart-page__submit">
-            <button onClick={() => handleCheckOut(cartItems)}>Check out</button>
+            <button onClick={() => handleCheckOut()}>Check out</button>
           </div>
         </>
       )}

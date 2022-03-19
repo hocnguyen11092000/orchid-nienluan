@@ -4,6 +4,10 @@ export interface Images {
   [key: string]: any;
 }
 
+export interface Category {
+  category: string;
+}
+
 export interface Product {
   _id: string;
   name: string;

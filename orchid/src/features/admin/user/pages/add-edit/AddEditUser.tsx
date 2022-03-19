@@ -6,12 +6,14 @@ import { addUser, updateUser } from "features/admin/user/userSlice";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { User } from "../../../../../models/user";
+import { Images } from "../../../../../models/product";
 import "./addedituser.scss";
 
 type Props = {};
 
 const AddEditUser = (props: Props) => {
-  const [user, setUser] = useState<any>();
+  const [user, setUser] = useState<User>();
   const { id } = useParams();
   const isEdit = Boolean(id);
 
@@ -37,7 +39,7 @@ const AddEditUser = (props: Props) => {
     password: "",
     confirmPassword: "",
     ...user,
-  };
+  } as User;
 
   const handleSubmit = async (values: any) => {
     const myForm = new FormData();
@@ -50,7 +52,7 @@ const AddEditUser = (props: Props) => {
 
     if (!isEdit) {
       try {
-        const result: any = await dispatch(addUser(myForm));
+        const result = await dispatch(addUser(myForm));
         unwrapResult(result);
 
         toast.success("Add user successfully");

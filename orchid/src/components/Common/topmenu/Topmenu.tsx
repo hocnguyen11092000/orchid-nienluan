@@ -2,6 +2,8 @@ import { useAppSelector } from "app/hooks";
 import React from "react";
 import Dropdown from "../dropdown/Dropdown";
 import "./topmenu.scss";
+import { ListResponse } from "../../../models/common";
+import { User } from "../../../models/user";
 type Props = {};
 
 const Topmenu = (props: Props) => {
@@ -12,18 +14,19 @@ const Topmenu = (props: Props) => {
     currentUser = JSON.parse(user);
   }
 
-  const userRedux: any = useAppSelector((state) => state.user.list);
-  const userAuth: any = useAppSelector((state) => state.auth.currentUser);
+  const userAuth: User = useAppSelector(
+    (state) => state.auth.currentUser
+  ) as User;
 
   const userData = ["edit profile"];
 
   return (
     <div className="topmenu">
       <Dropdown
-        name={userAuth?.name || userRedux?.name || currentUser?.name}
+        name={userAuth?.name || currentUser?.name}
         user={userAuth?.avatar?.url || currentUser?.avatar.url}
         content={userData}
-        _id={userAuth?._id || userRedux?._id || currentUser?._id}
+        _id={userAuth?._id || currentUser?._id}
       ></Dropdown>
     </div>
   );

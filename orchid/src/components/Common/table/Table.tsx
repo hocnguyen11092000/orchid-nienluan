@@ -8,6 +8,7 @@ import {
   LinearProgress,
   MenuItem,
   Select,
+  SelectChangeEvent,
 } from "@mui/material";
 import productApi from "api/productApi";
 import { useAppDispatch, useAppSelector } from "app/hooks";
@@ -40,7 +41,7 @@ type Props = {
   filter?: ListParams;
   onEditProduct?: (id: string) => void;
   onDeleteProduct?: (id: string) => void;
-  onChangeStatus?: (id: string, status: any) => void;
+  onChangeStatus?: (id: string, status: string) => void;
   onDeleteOrder?: (id: string) => void;
   loadingStatus?: boolean;
   loading?: boolean;
@@ -107,7 +108,7 @@ const Table = (props: Props) => {
     setIdOrder(id);
   };
 
-  const handleStatusChange = (e: any) => {
+  const handleStatusChange = (e: SelectChangeEvent<string>) => {
     setStatus(e.target.value);
   };
 

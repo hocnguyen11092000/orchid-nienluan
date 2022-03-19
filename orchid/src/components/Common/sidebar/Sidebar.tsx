@@ -3,12 +3,11 @@ import { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./sidebar.scss";
 
-type Props = {};
-const Sidebar = (props: Props) => {
-  const subRef = useRef<any>();
-  const userRef = useRef<any>();
-  const orderRef = useRef<any>();
-  const addressRef = useRef<any>();
+const Sidebar = () => {
+  const subRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const userRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const orderRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const addressRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   const { pathname } = useLocation();
 

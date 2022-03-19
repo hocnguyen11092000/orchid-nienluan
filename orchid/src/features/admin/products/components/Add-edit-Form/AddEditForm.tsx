@@ -3,10 +3,11 @@ import CKEditor from "@ckeditor/ckeditor5-react";
 import { CircularProgress } from "@mui/material";
 import { InputField } from "components/form-controls/InputFields";
 import "draft-js/dist/Draft.css";
-import { Product } from "models";
+import { Images, Product } from "models";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+
 type Props = {
   onSubmit?: (values: FormData) => void;
   init?: any;
@@ -19,7 +20,7 @@ const AddEditForm = (props: Props) => {
   const [dataCkediter, setDataCkediter] = useState<any>();
   const { id } = useParams();
 
-  const initialValues: any = {
+  const initialValues = {
     name: "",
     description: "",
     price: 0,
@@ -28,7 +29,6 @@ const AddEditForm = (props: Props) => {
     category: "",
     stock: 0,
   } as Product;
-  console.log(init);
 
   const values = Boolean(id) ? init : initialValues;
 
@@ -57,8 +57,6 @@ const AddEditForm = (props: Props) => {
       setDataCkediter(init.description);
     }
   }, [id]);
-
-  const [product, setProduct] = useState<any>();
 
   const createProductImagesChange = (e: any) => {
     const files = Array.from(e.target.files);
@@ -194,11 +192,12 @@ const AddEditForm = (props: Props) => {
         </form>
         <div>
           {id &&
-            init.images?.map((item: any, index: number) => (
+            init?.images.map((item: Images, index: number) => (
               <img key={index} src={item.url} alt="Product Preview" />
             ))}
+
           {imagesPreview &&
-            imagesPreview.map((item: any, index: number) => (
+            imagesPreview.map((item: string, index: number) => (
               <img key={index} src={item} alt="Product Preview" />
             ))}
         </div>

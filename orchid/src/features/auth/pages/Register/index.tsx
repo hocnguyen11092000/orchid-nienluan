@@ -21,7 +21,7 @@ const Register = (props: Props) => {
     myForm.append("avatar", values.avatar);
 
     try {
-      const result: any = await dispatch(addUser(myForm));
+      const result = await dispatch(addUser(myForm));
       unwrapResult(result);
 
       toast.success("Register successfully");

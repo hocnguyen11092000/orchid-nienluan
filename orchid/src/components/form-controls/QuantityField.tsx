@@ -8,7 +8,6 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   control: Control<any>;
   label?: string;
-  handleChange?: (value: any) => void;
   setValue?: any;
 }
 
@@ -18,7 +17,6 @@ export function QuantityField({
   label,
   type,
   placeholder,
-  handleChange,
   setValue,
 }: InputFieldProps) {
   const {

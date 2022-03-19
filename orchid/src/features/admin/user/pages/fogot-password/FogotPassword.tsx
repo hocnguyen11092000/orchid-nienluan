@@ -4,11 +4,12 @@ import { InputField } from "components/form-controls/InputFields";
 import { ForgotPaload, resetPassword } from "features/auth/authSlice";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./fogotpassword.scss";
 
 type Props = {};
+
 export interface ForgotValues {
   password: string;
   confirmPassword: string;
@@ -16,9 +17,7 @@ export interface ForgotValues {
 
 const FogotPassword = (props: Props) => {
   const loading = useAppSelector((state) => state.user.loading);
-  const userAuth: any = useAppSelector((state) => state.auth.currentUser);
   const { token } = useParams();
-  const naviage = useNavigate();
 
   const dispatch = useAppDispatch();
   const {

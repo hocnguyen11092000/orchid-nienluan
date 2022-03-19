@@ -12,10 +12,6 @@ export interface SearchValue {
   keyword: string;
 }
 
-const searchDefault: SearchValue = {
-  keyword: "",
-};
-
 const SearchProduct = (props: Props) => {
   const { onSubmit } = props;
   const {

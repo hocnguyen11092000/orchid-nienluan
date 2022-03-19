@@ -1,6 +1,7 @@
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { Grid } from "@mui/material";
 import orderApi from "api/orderApi";
+import { AxiosError } from "axios";
 import ProtectedRoute from "components/Common/protected-route/ProtectedRoute";
 import ListOrder from "features/admin/order/pages/ListOrder";
 import React, { useEffect, useState } from "react";
@@ -75,7 +76,7 @@ const head = [
 ];
 
 export const descData = (data: any) => {
-  const temp: Array<any> = [];
+  const temp: any = [];
   for (let index = data?.length - 1; index >= 0; index--) {
     temp.push(data[index]);
   }
@@ -85,12 +86,11 @@ export const descData = (data: any) => {
 const Home = (props: Props) => {
   const [status, setStatus] = useState<string>("Processing");
   const navigate = useNavigate();
-  const [newOrder, setNewOrder] = useState<any>();
-  const [order, setOrder] = useState<any>([]);
+  const [order, setOrder] = useState<any>();
 
-  const [processing, setProcessing] = useState<any>();
-  const [delivered, setdelivered] = useState<any>();
-  const [refused, setrefused] = useState<any>();
+  const [processing, setProcessing] = useState<number>();
+  const [delivered, setdelivered] = useState<number>();
+  const [refused, setrefused] = useState<number>();
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -105,22 +105,22 @@ const Home = (props: Props) => {
         console.log("Error: " + error);
       }
     })();
-  }, [status, newOrder]);
+  }, [status]);
 
   const CardList: Array<CardList> = [
     {
       name: "Processing",
-      count: processing,
+      count: processing as number,
       icon: <ShoppingBagOutlinedIcon></ShoppingBagOutlinedIcon>,
     },
     {
       name: "Delivered",
-      count: delivered,
+      count: delivered as number,
       icon: <ShoppingBagOutlinedIcon></ShoppingBagOutlinedIcon>,
     },
     {
       name: "Refused",
-      count: refused,
+      count: refused as number,
       icon: <ShoppingBagOutlinedIcon></ShoppingBagOutlinedIcon>,
     },
     {
@@ -130,7 +130,7 @@ const Home = (props: Props) => {
     },
   ];
 
-  const handleChangeStatus = async (id: string, status: any) => {
+  const handleChangeStatus = async (id: string, status: string) => {
     setLoading(true);
     try {
       await orderApi.updateStatus(id, status);
@@ -138,8 +138,10 @@ const Home = (props: Props) => {
       setStatus(status);
       setLoading(false);
       navigate("/admin/orderList");
-    } catch (error: any) {
-      toast.error(error.response.data.error);
+    } catch (err) {
+      const error = err as AxiosError;
+
+      toast.error(error.response?.data.error);
       setLoading(false);
     }
   };

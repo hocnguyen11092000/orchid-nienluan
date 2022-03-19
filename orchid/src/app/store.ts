@@ -29,6 +29,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   socket: socketReducer,
 });
+
 const routerMiddleware = createRouterMiddleware(browserHistory);
 export const store = configureStore({
   reducer: rootReducer,

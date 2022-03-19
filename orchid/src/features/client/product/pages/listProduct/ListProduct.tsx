@@ -2,9 +2,6 @@ import { Box, Grid, Pagination, Paper, Stack, Typography } from "@mui/material";
 import productApi from "api/productApi";
 import { descData } from "features/admin/Home/pages/Home";
 import Category from "features/client/product/components/filter/category/Category";
-import Price, {
-  PriceValue,
-} from "features/client/product/components/filter/price/Price";
 import SearchProduct, {
   SearchValue,
 } from "features/client/product/components/filter/search/SearchProduct";
@@ -12,8 +9,10 @@ import ProductItem from "features/client/product/components/product-item/Product
 import { ListResponse, Product } from "models";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import Price from "../../components/filter/price/Price";
 import ProductSkelation from "../../components/product-skelaton/ProductSkelation";
 import "./listproduct.scss";
+
 type Props = {};
 
 const ListProduct = (props: Props) => {
@@ -77,7 +76,7 @@ const ListProduct = (props: Props) => {
     setPage(1);
   };
 
-  const handlePriceChange = (value: PriceValue) => {
+  const handlePriceChange = (value: string) => {
     setFilter({
       ...filter,
       "price[lte]": value,
@@ -104,7 +103,10 @@ const ListProduct = (props: Props) => {
               <Typography variant="h5" component="h2">
                 Category
               </Typography>
-              <Category onChange={handleChangeCategory}></Category>
+              <Category
+                isChoosed={filter.cat}
+                onChange={handleChangeCategory}
+              ></Category>
               <Typography variant="h5" component="h2">
                 Price
               </Typography>

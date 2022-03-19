@@ -1,7 +1,15 @@
 import { CircularProgress } from "@mui/material";
 import { InputField } from "components/form-controls/InputFields";
+import { Address } from "models";
 import React from "react";
 import { useForm } from "react-hook-form";
+
+export interface ShippingFrom {
+  name: string;
+  address: string;
+  phoneNo: string;
+  gender: string;
+}
 
 type Props = {
   onSubmit: (values: any) => void;
@@ -25,7 +33,7 @@ const ShippingForm = (props: Props) => {
     },
   });
 
-  const handleFormSubmit = async (values: any) => {
+  const handleFormSubmit = async (values: ShippingFrom) => {
     if (onSubmit) {
       await onSubmit(values);
     }

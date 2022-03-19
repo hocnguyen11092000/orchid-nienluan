@@ -7,8 +7,7 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   control: Control<any>;
   label?: string;
-  handleChange?: (value: any) => void;
-  mWidth?: any;
+  mWidth?: number | string;
 }
 
 export function InputField({
@@ -17,7 +16,6 @@ export function InputField({
   label,
   type,
   placeholder,
-  handleChange,
   mWidth,
 }: InputFieldProps) {
   const {

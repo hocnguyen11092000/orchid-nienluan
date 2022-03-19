@@ -11,7 +11,7 @@ import "./listorder.scss";
 type Props = {
   head?: Array<string>;
   dataOrders?: Array<Order>;
-  onChangeStatus?: (id: string, status: any) => void;
+  onChangeStatus?: (id: string, status: string) => void;
   loading?: boolean;
   mg?: number;
 };
@@ -36,11 +36,11 @@ const ListOrder = (props: Props) => {
     setSocket(io("http://localhost:5000"));
   }, []);
 
-  const [order, setOrder] = useState<any>();
-  const [newOrder, setNewOrder] = useState<any>("");
+  const [order, setOrder] = useState<Order[]>();
+  const [newOrder, setNewOrder] = useState<string>("");
   const [render, setRender] = useState<boolean>(false);
 
-  socket?.on("server", (data: any) => {
+  socket?.on("server", (data: Order) => {
     if (data._id != newOrder) {
       setNewOrder(data._id);
     }

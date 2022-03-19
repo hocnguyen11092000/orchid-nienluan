@@ -40,10 +40,10 @@ const productSlice = createSlice({
     fetchProductListFailed(state) {
       state.loading = false;
     },
-    deleteProduct(state, action: PayloadAction<any>) {
+    deleteProduct(state, action: PayloadAction<string>) {
       state.loading = true;
     },
-    deleteProductSuccess(state, action: PayloadAction<any>) {
+    deleteProductSuccess(state, action: PayloadAction<string>) {
       state.loading = false;
       state.list = state.list.filter((x) => x._id !== action.payload);
     },

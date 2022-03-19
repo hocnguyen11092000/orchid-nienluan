@@ -1,16 +1,13 @@
 import React from "react";
 
-export interface PriceValue {
-  price: number;
-}
 type Props = {
-  onSubmit?: (price: PriceValue) => void;
+  onSubmit?: (price: string) => void;
 };
 
 const Price = (props: Props) => {
   const { onSubmit } = props;
 
-  const handlePriceChange = (e: any) => {
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onSubmit) {
       onSubmit(e.target.value);
     }

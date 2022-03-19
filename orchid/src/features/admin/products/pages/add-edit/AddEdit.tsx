@@ -7,8 +7,19 @@ import { toast } from "react-toastify";
 import "./addedit.scss";
 type Props = {};
 
+export interface InitValues {
+  name: string;
+  description: string;
+  price: number;
+  discount: number;
+  weight: number;
+  category: string;
+  stock: number;
+  [key: string]: any;
+}
+
 const AddEdit = (props: Props) => {
-  const [product, setProduct] = useState<any>();
+  const [product, setProduct] = useState<Product>();
 
   const params = useParams();
   const { id } = params;
@@ -28,7 +39,7 @@ const AddEdit = (props: Props) => {
     })();
   }, [id]);
 
-  const initialValues: any = {
+  const initialValues = {
     name: "",
     description: "",
     price: 0,

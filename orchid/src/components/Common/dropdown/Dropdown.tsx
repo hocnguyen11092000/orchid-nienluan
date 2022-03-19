@@ -1,6 +1,6 @@
 import { useAppDispatch } from "app/hooks";
 import { logout } from "features/auth/authSlice";
-import { useRef } from "react";
+import { MutableRefObject, Ref, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import "./dropdown.scss";
 
@@ -12,7 +12,10 @@ type Props = {
   _id?: string;
 };
 
-const clickOutSide = (toggleRef: any, contentRef: any) => {
+const clickOutSide = (
+  toggleRef: MutableRefObject<HTMLDivElement>,
+  contentRef: MutableRefObject<HTMLDivElement>
+) => {
   document.addEventListener("mousedown", (e: any) => {
     if (toggleRef?.current && toggleRef.current.contains(e.target)) {
       contentRef.current.classList.toggle("active");
@@ -26,8 +29,8 @@ const clickOutSide = (toggleRef: any, contentRef: any) => {
 
 const Dropdown = (props: Props) => {
   const dispatch = useAppDispatch();
-  const toggleRef = useRef(null);
-  const contentRef = useRef(null);
+  const toggleRef = useRef<HTMLDivElement>(null) as any;
+  const contentRef = useRef<HTMLDivElement>(null) as any;
 
   clickOutSide(toggleRef, contentRef);
 
