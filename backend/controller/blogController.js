@@ -12,7 +12,8 @@ exports.newBlog = catchAsyncError(async (req, res, next) => {
     crop: "scale",
   });
 
-  req.body.author = req.user._id;
+  req.body.author = req.user.name;
+
   const { title, shortDescription, content, author } = req.body;
 
   const blog = await Blog.create({
@@ -34,7 +35,7 @@ exports.newBlog = catchAsyncError(async (req, res, next) => {
 
 //get all blogs
 exports.getAllBlog = catchAsyncError(async (req, res, next) => {
-  const resultPerPage = 5;
+  const resultPerPage = 4;
   const blogCount = await Blog.countDocuments();
 
   const apiFeature = new ApiFeature(Blog.find(), req.query).pagination(
